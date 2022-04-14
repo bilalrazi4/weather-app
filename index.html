@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      #container{
+        border: 2px solid black;
+        display: flex;
+        justify-content: center;
+        max-width: 30vw;
+        margin: auto;
+        margin-top: 15%;
+      }
+      #icon{
+        border: 2px solid black;
+        height: 50px;
+        width: 50px;
+        font-size: 5vh;
+      }
+    </style>
+
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div id="container">
+      <div id="icon">
+        <i class="fa-solid fa-clouds" style="color:blue"></i>
+      </div>
+      <div id="info">
+        <h2 class="location">
+          <i class="fa-solid fa-location-dot" style="color: green"></i
+          >{%city%},{%country%}
+        </h2>
+        <p id="date">Wednsday</p>
+        <h1 id="temp">{%currTemp%}&deg;C</h1>
+        <h3 class="temp_min_max">Min:{%minTemp%}&deg;C Max:{%maxTemp%}&deg;C</h3>
+      </div>
+    </div>
+
+    <script>
+        let condition = document.getElementById('icon');
+        let tempStatus = "{%tempStatus%}";
+        if(tempStatus=="Clouds"){
+            condition.innerHTML = "<i class='fa-solid fa-clouds' style='color:blue'></i>";
+        }
+        else{
+            condition.innerHTML = "<i class='fa-solid fa-sun' style='color: yellow'></i>"
+        }
+      const weekday = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      const months = [
+        "Dec",
+        "Jan",
+        "Feb",
+        "March",
+        "Apr",
+        "May",
+        "June",
+        "July",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+      ];
+
+      const date = new Date();
+
+      const day = weekday[date.getDay()];
+      const month = months[date.getMonth()];
+      const now = date.getDate();
+
+      const time = new Date();
+      let hours = time.getHours();
+      let mins = time.getMinutes();
+      let period = "AM";
+
+      if (hours > 11) {
+        period = "PM";
+        if (hours > 12) hours -= 12;
+      }
+      if (mins < 10) {
+        mins = "0" + mins;
+      }
+      console.log(day, month, now);
+      document.getElementById(
+        "date"
+      ).innerHTML = `${day}, ${month} ${now}, ${hours}:${mins} ${period}`;
+    </script>
+
+    <script src="index.js"></script>
+  </body>
+</html>

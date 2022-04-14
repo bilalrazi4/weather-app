@@ -1,0 +1,14 @@
+#container{
+    border:2px solid black;
+    display:flex;
+    justify-content: center;
+    max-width: 30vw;
+    margin:auto;
+    margin-top: 15%;
+}
+#icon{
+    border:2px solid black;
+    height:50px;
+    width:50px;
+    font-size: 5vh;
+}
